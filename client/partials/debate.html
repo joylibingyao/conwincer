@@ -1,0 +1,45 @@
+<div ng-Controller="Search" class="container-fluid ">
+
+<!-- 	<div>
+<h3>Location: Enter Zipcode</h3>
+<input type="text">
+</div> -->
+<div class="row green lighten-5" id="serviceSearch">
+	<h3>Debates</h3>
+	<p>Type the topic that you are looking for</p>
+	<div class="input-field col s6" id="search">
+		<i class="material-icons prefix">search</i>
+		<input id="search"type="text" class="form-control" placeholder='' ng-model="filter_service">
+
+		<label for='search'>Type here: </label>
+	</div>
+</div>
+<div class="row green lighten-5" id="services">
+	<p>Click "SELECT" to get avaliable people for that service</p>
+	<table ng-model="searchService" class="col s6">
+		<thead>
+			<th>Available Services</th>
+			<th>Action</th>
+		</thead>
+		<tbody>
+			<tr ng-repeat="service in global_services | filter: filter_service">
+				<td>{{service}}</td> 
+				<td><button onclick="Materialize.toast('Here is list available users =D', 4000)" class="btn waves-effect waves-light green" ng-click="searchUsers(service)">Select</button></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<table ng-model="pick_contractor" class="col s6"> 
+		<thead>
+			<th>People For The Service</th>
+			<th> Rating</th>
+		</thead>
+		<tr ng-repeat="user in users">
+			<!-- should be username not you -->
+			<td onclick="Materialize.toast('Right On! Here is his schedule =D', 4000)" class="pick_contractor waves-effect waves-light " ng-click="getCalendar(user)"><img  class="" src="{{user.url}}"><i class="material-icons left">face</i>{{user.username}}</td>
+			<td>{{user.aveRating.toFixed(2)}}</td>
+			<!-- need to adjust the average rating part -->
+		</tr>
+	</table>
+</div>
+
